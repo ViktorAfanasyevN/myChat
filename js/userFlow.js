@@ -38,7 +38,7 @@ User.prototype.write = function (message='I can see you dude') {
     msgBox.appendChild(msg)
     User.prototype.messageBox.appendChild(msgBox)
     User.prototype.messageBox.scrollTop = User.prototype.messageBox.scrollHeight
-    postComment(message)
+    !arguments[2] && postComment(message)
 }
 
 User.prototype.userInputBox = document.createElement('textarea')

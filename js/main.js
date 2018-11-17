@@ -1,5 +1,5 @@
 let user
-let posts
+let lastUpdate = {date: "11/17/1000", time : "7:39:23 AM"}
 
 var signInButton = document.getElementsByClassName('myButton')[0];
 var registerButton = document.getElementsByClassName('myButton')[1];
@@ -50,15 +50,17 @@ var signInForm = (function () {
             event.preventDefault()
             let tmp
             await Promise.all ( [
-                getUserData ( emailInput.value).then ( x => tmp = x )
+                getData ( 'users/'+emailInput.value).then ( x => tmp = x )
             ] )
 
             if (tmp.name && tmp.authKey === Sha256.hash(pwnInput.value)) {
-                alert("You are registered")
                 user = new User(tmp.name, tmp.email, tmp.avatart)
                 formContainer.style.display = 'none'
                 chatbox.style.display = 'unset'
-
+                updateChat(true)
+                let postTime = new Date().toLocaleString ().split ( ', ' )
+                lastUpdate.date = postTime [0]
+                lastUpdate.time = postTime [1]
             } else {
                 alert("Wrong User name or Password")
                 formContainer.style.display = 'none'
@@ -166,7 +168,6 @@ var registerForm = (function () {
     }
 )()
 
-
 function registerNewUser(formContainer) {
     var formData_ = new FormData(formContainer);
 
@@ -186,12 +187,26 @@ function registerNewUser(formContainer) {
 }
 
 function postComment(comment) {
+    let postTime = new Date().toLocaleString ().split ( ', ' )
 
     fetch ( 'http://localhost:3000/comments', {
         method: 'POST',
         body: JSON.stringify ({
             userID: user._name,
             message: comment,
+            date: postTime [0],
+            time: postTime [1],
+        }),
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+
+    fetch ( 'http://localhost:3000/lastUpdate', {
+        method: 'POST',
+        body: JSON.stringify ({
+            date: postTime [0],
+            time: postTime [1],
         }),
         headers: {
             "Content-type": "application/json"
@@ -199,11 +214,42 @@ function postComment(comment) {
     })
 }
 
-let getUserData =  function ( user ) {
-    return fetch ( 'http://localhost:3000/users/' + user )
-        .then (response => response.json())
+let updateChat = async function (init=false) {
+    let updated
+    await getData ( "lastUpdate" ).then(x=>updated=x)
+    if ( lastUpdate && updated.date === lastUpdate.date &&
+        updated.time === lastUpdate.time ) return
+
+    let users
+    let comments
+    await Promise.all ( [
+        getData ( "comments" ).then ( x => comments = x )
+    ] )
+
+    let tmpUser = {}
+    if (init) {
+        for (let x of comments ) {
+            let tmp
+            await getData ( 'users/'+x.userID).then ( x => tmp = x )
+            console.log(tmp)
+            user.write(x.message, {_photoURL:tmp.avatart, name: tmp.name}, true)
+        }
+    } else {
+        for (let x of comments ) {
+            if (x.userID!=user._email && (x.date>=lastUpdate.date || x.date===lastUpdate.date && x.time>=lastUpdate.time)) {
+                let tmp
+                await getData ( 'users/'+x.userID).then ( x => tmp = x )
+                console.log(tmp)
+                user.write(x.message, {_photoURL:tmp.avatart, name: tmp.name}, true)
+            }
+        }
+    }
 }
 
+let getData =  function ( ref ) {
+    return fetch ( 'http://localhost:3000/' + ref )
+        .then (response => response.json())
+}
 
 document.getElementsByClassName('main-top')[0].appendChild(signInForm)
 document.getElementsByClassName('main-top')[0].appendChild(registerForm)
@@ -221,3 +267,6 @@ function registerUser() {
     registerForm.style.display = 'unset';
 }
 
+// let interval = setInterval ( function () {
+//     updateChat ()
+// }, 1000 )

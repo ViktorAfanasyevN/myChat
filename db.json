@@ -1,7 +1,7 @@
 {
   "lastUpdate": {
-    "data": "26.10.2018",
-    "time": "12:38:01"
+    "date": "11/17/2018",
+    "time": "9:24:00 AM"
   },
   "users": [
     {
@@ -10,19 +10,65 @@
       "email": "admin@gmail.com",
       "avatart": "https://i.pinimg.com/originals/3d/47/4f/3d474f82ff71595e8081f9a120892ae8.gif",
       "authKey": "8d6c5597d25eca212ea6c6cacc0a02e247b8c631343a70147cb81374ff72f414"
+    },
+    {
+      "id": "mykola@gmail.com",
+      "name": "mykola",
+      "email": "mykola@gmail.com",
+      "avatart": "https://pre00.deviantart.net/18ac/th/pre/i/2018/319/a/f/i_m_a_faun__you_dork_by_ambris-dcs3e6w.png",
+      "authKey": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3"
     }
   ],
   "posts": [],
   "comments": [
     {
-      "userID": "admin",
+      "userID": "admin@gmail.com",
       "message": "print",
+      "date": "11/17/2018",
+      "time": "8:28:22 AM",
       "id": 1
     },
     {
-      "userID": "admin",
+      "userID": "admin@gmail.com",
       "message": "who it there?",
+      "date": "11/17/2018",
+      "time": "8:28:22 AM",
       "id": 2
+    },
+    {
+      "userID": "mykola@gmail.com",
+      "message": "Hi",
+      "date": "11/17/2018",
+      "time": "8:28:22 AM",
+      "id": 3
+    },
+    {
+      "userID": "admin@gmail.com",
+      "message": "polk",
+      "date": "11/17/2018",
+      "time": "8:28:22 AM",
+      "id": 4
+    },
+    {
+      "userID": "admin@gmail.com",
+      "message": "er",
+      "date": "11/17/2018",
+      "time": "8:28:22 AM",
+      "id": 5
+    },
+    {
+      "userID": "mykola@gmail.com",
+      "message": "sokol",
+      "date": "11/17/2018",
+      "time": "8:28:22 AM",
+      "id": 6
+    },
+    {
+      "userID": "mykola",
+      "message": "volk",
+      "date": "11/17/2018",
+      "time": "9:24:00 AM",
+      "id": 7
     }
   ]
 }
