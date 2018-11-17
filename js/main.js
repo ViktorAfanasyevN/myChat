@@ -1,5 +1,5 @@
 let user
-let lastUpdate = {date: "11/17/1000", time : "7:39:23 AM"}
+let lastUpdate = {date: "11/17/1000", time : "0:00:00 AM"}
 
 var signInButton = document.getElementsByClassName('myButton')[0];
 var registerButton = document.getElementsByClassName('myButton')[1];
@@ -192,7 +192,7 @@ function postComment(comment) {
     fetch ( 'http://localhost:3000/comments', {
         method: 'POST',
         body: JSON.stringify ({
-            userID: user._name,
+            userID: user._email,
             message: comment,
             date: postTime [0],
             time: postTime [1],
@@ -236,11 +236,13 @@ let updateChat = async function (init=false) {
         }
     } else {
         for (let x of comments ) {
-            if (x.userID!=user._email && (x.date>=lastUpdate.date || x.date===lastUpdate.date && x.time>=lastUpdate.time)) {
+            if (!(x.userID===user._email) &&
+                    (x.date>lastUpdate.date || x.date===lastUpdate.date && x.time>lastUpdate.time)) {
                 let tmp
                 await getData ( 'users/'+x.userID).then ( x => tmp = x )
-                console.log(tmp)
                 user.write(x.message, {_photoURL:tmp.avatart, name: tmp.name}, true)
+                lastUpdate.date = x.date
+                lastUpdate.time = x.time
             }
         }
     }
@@ -267,6 +269,6 @@ function registerUser() {
     registerForm.style.display = 'unset';
 }
 
-// let interval = setInterval ( function () {
-//     updateChat ()
-// }, 1000 )
+let interval = setInterval ( function () {
+    updateChat ()
+}, 1000 )

@@ -25,11 +25,11 @@ User.prototype.messageBox.classList.add('messageBoxStyle')
 User.prototype.write = function (message='I can see you dude') {
     let icon_ = document.createElement('img')
     icon_.classList.add('icon')
-    icon_.src = (arguments[1]) ? arguments[1]._photoURL : this._photoURL
+    icon_.src = (arguments[1]) ? arguments[1]._photoURL : user._photoURL
     let msg = document.createElement('p')
     let __name = msg.appendChild(document.createElement('span'))
     __name.classList.add("nameStyle")
-    __name.appendChild(document.createTextNode( (arguments[1]) ? arguments[1].name : this._name))
+    __name.appendChild(document.createTextNode( (arguments[1]) ? arguments[1].name : user._name))
     msg.appendChild(document.createElement('br'))
     msg.appendChild(document.createTextNode(message))
     let msgBox = document.createElement('div')
@@ -47,7 +47,7 @@ User.prototype.userInputBox.rows =4
 User.prototype.userInputBox.onkeypress = function (event) {
     if(event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault()
-        User.prototype.write(event.target.value, user)
+        User.prototype.write(event.target.value)
         event.target.value=''
     }
 }
