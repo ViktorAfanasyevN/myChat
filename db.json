@@ -1,0 +1,28 @@
+{
+  "lastUpdate": {
+    "data": "26.10.2018",
+    "time": "12:38:01"
+  },
+  "users": [
+    {
+      "id": "admin@gmail.com",
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "avatart": "https://i.pinimg.com/originals/3d/47/4f/3d474f82ff71595e8081f9a120892ae8.gif",
+      "authKey": "8d6c5597d25eca212ea6c6cacc0a02e247b8c631343a70147cb81374ff72f414"
+    }
+  ],
+  "posts": [],
+  "comments": [
+    {
+      "userID": "admin",
+      "message": "print",
+      "id": 1
+    },
+    {
+      "userID": "admin",
+      "message": "who it there?",
+      "id": 2
+    }
+  ]
+}

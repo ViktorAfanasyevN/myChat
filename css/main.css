@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font: 300 10px/1.1 'Roboto', 'Arial', 'Helvetica', sans-serif;
+    background: #ffffff;
+    color: #000000;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 15px 40px 15px;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+p {
+    font-size: 1em;
+}
+
+.main {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    min-height: 400px;
+    padding-bottom: 2%;
+}
+
+.main-top {
+    background: url(../images/background.jpeg) no-repeat center top / cover;
+    background-size: 100% 100%;
+    width: 100%;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.myButton {
+    background-color: royalblue;
+    border-radius: 26px;
+    color: white;
+    margin: 5px;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    min-width: 100px;
+    max-width: 150px;
+    width: 40%;
+    font-size: large;
+}
+
+.signin-container .btn:hover, .myButton:hover {
+    background-color: deepskyblue;
+    text-decoration: underline;
+    opacity: 1;
+}
+
+/* Add styles to the form container */
+.signin-container {
+    display: none;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+    font-size: 1.4em;
+}
+
+/* Full-width input fields */
+.inputBox {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0 15px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+/* Set a style for the submit/login button */
+.signin-container .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+    font-size: 1em;
+}
+
+/* Add a red background color to the cancel button */
+.signin-container .cancel {
+    background-color: red;
+}
+
+
+.chatbox {
+    display: none;
+}
+
+.messageBoxStyle {
+    height:400px;
+    width:300px;
+    border: 2px solid;
+    overflow:auto;
+    background-color: lavender;
+}
+
+.messageStyle {
+    display: inline-flex;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+}
+
+p {
+    margin: 0;
+    font-size: 10px;
+}
+
+.nameStyle {
+    font-weight: bold;
+    color: blue;
+    font-size: 14px;
+}
+
+.userInputBox {
+    width: 100%;
+    height: 40px;
+    resize: none;
+    border: 2px solid;
+    background-color: lavender;
+}
